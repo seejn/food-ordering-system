@@ -1,0 +1,123 @@
+// Don't forget to tell Prisma about your edits to this file using
+// `yarn rw prisma migrate dev` or `yarn rw prisma db push`.
+// `migrate` is like committing while `push` is for prototyping.
+// Read more about both here:
+// https://www.prisma.io/docs/orm/prisma-migrate
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+// Define your own datamodels here and run `yarn redwood prisma migrate dev`
+// to create migrations for them and apply to your dev DB.
+// TODO: Please remove the following example:
+// model UserExample {
+//   id    Int     @id @default(autoincrement())
+//   email String  @unique
+//   name  String?
+// }
+
+model RestaurantMenu {
+  id           Int        @id @default(autoincrement())
+  menuId       Int
+  restaurantId Int
+  menu         Menu       @relation(fields: [menuId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model Restaurant {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+  name        String
+  description String
+  open        String
+  close       String
+  image       String?
+
+  ratings         Rating[]
+  phone           String
+  website         String
+  city            String
+  state           String
+  zipcode         String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  Restaurant_Menu RestaurantMenu[]
+  OrderedItem     OrderedItem[]
+}
+
+model Menu {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String?
+  price        Float
+  availability Boolean  @default(true)
+  image        String?
+  ingredients  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  Restaurant_Menu RestaurantMenu[]
+  OrderedItem     OrderedItem[]
+}
+
+model Rating {
+  id           Int        @id @default(autoincrement())
+  user         String
+  rating       Int
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  name       String
+  email      String       @unique
+  password   String
+  role       Role         @default(USER) // Role stored as ENUM
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Restaurant Restaurant[]
+  Order      Order[]
+}
+
+enum Role {
+  USER
+  RESTAURANT
+  DELIVERY
+}
+
+model Order {
+  id       Int  @id @default(autoincrement())
+  userId   Int
+  customer User @relation(fields: [userId], references: [id])
+
+  totalAmount   Float
+  paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
+  orderedItem   OrderedItem[]
+}
+
+enum PaymentMethod {
+  CASH_ON_DELIVERY
+}
+
+model OrderedItem {
+  id           Int        @id @default(autoincrement())
+  image        String     @db.LongText
+  menuId       Int
+  menu         Menu       @relation(fields: [menuId], references: [id])
+  quantity     Int
+  price        Float
+  totalPrice   Float
+  orderId      Int
+  order        Order      @relation(fields: [orderId], references: [id])
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
