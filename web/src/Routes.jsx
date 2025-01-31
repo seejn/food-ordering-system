@@ -40,6 +40,7 @@ const Routes = () => {
         <Route path="/restaurants" page={RestaurantsPage} name="restaurants" />
         <Route path="/restaurants/{id:Int}" page={RestaurantPage} name="restaurant" />
         <Route path="/" page={LandingPage} name="landing" />
+        <Route path="/verify-reset-password-token" page={VerifyResetPasswordTokenPage} name="verifyResetPasswordToken" />
       </Set>
 
       <Route notfound page={NotFoundPage} />
