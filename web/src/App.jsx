@@ -7,12 +7,17 @@ import './index.css'
 import { AuthProvider } from 'src/hooks/useAuth'
 import { CartProvider } from 'src/hooks/useCart'
 
+import { Toaster } from '@redwoodjs/web/toast'
+
 const App = ({ children }) => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <AuthProvider>
         <CartProvider>
-          <RedwoodApolloProvider>{children}</RedwoodApolloProvider>
+          <RedwoodApolloProvider>
+            <Toaster />
+            {children}
+          </RedwoodApolloProvider>
         </CartProvider>
       </AuthProvider>
     </RedwoodProvider>
