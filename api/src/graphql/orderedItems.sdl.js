@@ -9,6 +9,8 @@ export const schema = gql`
     totalPrice: Float!
     orderId: Int!
     order: Order!
+    restaurantId: Int!
+    restaurant: Restaurant!
   }
 
   type Query {
@@ -23,6 +25,7 @@ export const schema = gql`
     price: Float!
     totalPrice: Float!
     orderId: Int!
+    restaurantId: Int!
   }
 
   input UpdateOrderedItemInput {
@@ -32,6 +35,7 @@ export const schema = gql`
     price: Float
     totalPrice: Float
     orderId: Int
+    restaurantId: Int
   }
 
   type Mutation {

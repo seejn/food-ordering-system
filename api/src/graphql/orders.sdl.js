@@ -3,8 +3,6 @@ export const schema = gql`
     id: Int!
     userId: Int!
     customer: User!
-    restaurantId: Int!
-    restaurant: Restaurant!
     totalAmount: Float!
     paymentMethod: PaymentMethod!
     orderedItem: [OrderedItem]!
@@ -21,14 +19,12 @@ export const schema = gql`
 
   input CreateOrderInput {
     userId: Int!
-    restaurantId: Int!
     totalAmount: Float!
     paymentMethod: PaymentMethod!
   }
 
   input UpdateOrderInput {
     userId: Int
-    restaurantId: Int
     totalAmount: Float
     paymentMethod: PaymentMethod
   }
