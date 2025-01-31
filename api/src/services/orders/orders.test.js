@@ -23,24 +23,22 @@ describe('orders', () => {
     const result = await createOrder({
       input: {
         userId: scenario.order.two.userId,
-        restaurantId: scenario.order.two.restaurantId,
-        totalAmount: 8632779.625185203,
+        totalAmount: 2095734.850612654,
       },
     })
 
     expect(result.userId).toEqual(scenario.order.two.userId)
-    expect(result.restaurantId).toEqual(scenario.order.two.restaurantId)
-    expect(result.totalAmount).toEqual(8632779.625185203)
+    expect(result.totalAmount).toEqual(2095734.850612654)
   })
 
   scenario('updates a order', async (scenario) => {
     const original = await order({ id: scenario.order.one.id })
     const result = await updateOrder({
       id: original.id,
-      input: { totalAmount: 1592548.813270498 },
+      input: { totalAmount: 5753700.161709161 },
     })
 
-    expect(result.totalAmount).toEqual(1592548.813270498)
+    expect(result.totalAmount).toEqual(5753700.161709161)
   })
 
   scenario('deletes a order', async (scenario) => {

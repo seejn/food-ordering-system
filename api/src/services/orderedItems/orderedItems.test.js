@@ -30,19 +30,21 @@ describe('orderedItems', () => {
       input: {
         image: 'String',
         menuId: scenario.orderedItem.two.menuId,
-        quantity: 6768213,
-        price: 1972459.4980409371,
-        totalPrice: 9090845.458548477,
+        quantity: 5978186,
+        price: 9559835.428248618,
+        totalPrice: 9484288.294032363,
         orderId: scenario.orderedItem.two.orderId,
+        restaurantId: scenario.orderedItem.two.restaurantId,
       },
     })
 
     expect(result.image).toEqual('String')
     expect(result.menuId).toEqual(scenario.orderedItem.two.menuId)
-    expect(result.quantity).toEqual(6768213)
-    expect(result.price).toEqual(1972459.4980409371)
-    expect(result.totalPrice).toEqual(9090845.458548477)
+    expect(result.quantity).toEqual(5978186)
+    expect(result.price).toEqual(9559835.428248618)
+    expect(result.totalPrice).toEqual(9484288.294032363)
     expect(result.orderId).toEqual(scenario.orderedItem.two.orderId)
+    expect(result.restaurantId).toEqual(scenario.orderedItem.two.restaurantId)
   })
 
   scenario('updates a orderedItem', async (scenario) => {

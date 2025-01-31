@@ -36,4 +36,7 @@ export const OrderedItem = {
   order: (_obj, { root }) => {
     return db.orderedItem.findUnique({ where: { id: root?.id } }).order()
   },
+  restaurant: (_obj, { root }) => {
+    return db.orderedItem.findUnique({ where: { id: root?.id } }).restaurant()
+  },
 }

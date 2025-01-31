@@ -2,70 +2,26 @@ export const standard = defineScenario({
   order: {
     one: {
       data: {
-        totalAmount: 4247788.44682171,
+        totalAmount: 4541444.892876414,
         customer: {
           create: {
             name: 'String',
-            email: 'String2075900',
+            email: 'String1255070',
             password: 'String',
-            updatedAt: '2025-01-30T12:06:47.156Z',
-          },
-        },
-        restaurant: {
-          create: {
-            name: 'String',
-            description: 'String',
-            open: 'String',
-            close: 'String',
-            phone: 'String',
-            website: 'String',
-            city: 'String',
-            state: 'String',
-            zipcode: 'String',
-            updatedAt: '2025-01-30T12:06:47.241Z',
-            user: {
-              create: {
-                name: 'String',
-                email: 'String9501052',
-                password: 'String',
-                updatedAt: '2025-01-30T12:06:47.313Z',
-              },
-            },
+            updatedAt: '2025-01-30T15:23:58.324Z',
           },
         },
       },
     },
     two: {
       data: {
-        totalAmount: 8211156.666314285,
+        totalAmount: 8277654.654454117,
         customer: {
           create: {
             name: 'String',
-            email: 'String6150786',
+            email: 'String7632382',
             password: 'String',
-            updatedAt: '2025-01-30T12:06:47.387Z',
-          },
-        },
-        restaurant: {
-          create: {
-            name: 'String',
-            description: 'String',
-            open: 'String',
-            close: 'String',
-            phone: 'String',
-            website: 'String',
-            city: 'String',
-            state: 'String',
-            zipcode: 'String',
-            updatedAt: '2025-01-30T12:06:47.464Z',
-            user: {
-              create: {
-                name: 'String',
-                email: 'String8767264',
-                password: 'String',
-                updatedAt: '2025-01-30T12:06:47.532Z',
-              },
-            },
+            updatedAt: '2025-01-30T15:23:58.363Z',
           },
         },
       },

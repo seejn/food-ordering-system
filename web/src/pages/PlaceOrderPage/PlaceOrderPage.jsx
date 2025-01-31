@@ -1,8 +1,10 @@
-// import { Link, routes } from '@redwoodjs/router'
-import { Metadata } from '@redwoodjs/web'
+import { Link, routes, navigate } from '@redwoodjs/router'
+import { Metadata, useMutation } from '@redwoodjs/web'
 import { useCart } from 'src/hooks/useCart'
 import { useAuth } from 'src/hooks/useAuth'
 import {v4 as uuidv4} from "uuid"
+
+import { toast } from '@redwoodjs/web/toast'
 
 const ItemRow = ({item}) => {
   return (
@@ -16,36 +18,88 @@ const ItemRow = ({item}) => {
   )
 }
 
+const CREATE_ORDER = gql`
+  mutation createOrderMutation($input: CreateOrderInput!){
+    createOrder(input: $input){
+      id
+      userId
+      totalAmount
+      paymentMethod
+    }
+  }
+`
+
+const CREATE_ORDERED_ITEM = gql`
+  mutation createOrderedItemMutation($input: CreateOrderedItemInput!){
+    createOrderedItem(input: $input){
+      id
+      menuId
+      image
+      quantity
+      price
+      totalPrice
+      orderId
+      restaurantId
+    }
+  }
+`
+
 const PlaceOrderPage = () => {
-  const { items, getTotal } = useCart()
+  const { items, getTotal, clearCart } = useCart()
   const {getUser} = useAuth()
   const {id: userId} = getUser()
   console.log(items)
 
-  const createOrderPayload = () => {
-    const updatedItems = items.map(item => {
+  const [createOrder] = useMutation(CREATE_ORDER);
+  const [createOrderedItem] = useMutation(CREATE_ORDERED_ITEM);
+
+  const orderPayload = {
+    userId: userId,
+    totalAmount: getTotal(),
+    paymentMethod: "CASH_ON_DELIVERY",
+  }
+
+  const createOrderedItemPayload = (orderId) => {
+    return items.map(item => {
       return{
         menuId: item.menu.id,
         image: item.image,
         quantity: item.quantity,
         price: item.price,
         totalPrice: item.total_price,
+        orderId: orderId,
         restaurantId: item.restaurantId,
     }
     })
-    return {
-      userId: userId,
-      totalAmount: getTotal(),
-      paymentMethod: "CASH_ON_DELIVERY",
-      orderedItems: updatedItems
-    }
   }
 
   const itemsUI = items.length > 0 ? items.map(item => <ItemRow key={uuidv4()}  item={item} />) : <p className='text-red-400 text-center text-xl font-bold'>No Items in Cart</p>
 
-  const handleConfirmOrder = (e) => {
+  const handleConfirmOrder = async (e) => {
     e.preventDefault()
-    console.log(createOrderPayload())
+
+    try{
+      const response = await createOrder({
+        variables: {
+          input: orderPayload
+        }
+      });
+
+      const {id} = response.data.createOrder;
+
+      const orderedItemPayloads = createOrderedItemPayload(id);
+      const orderedItemPromises = orderedItemPayloads.map(payload =>
+          createOrderedItem({ variables: { input: payload } })
+      );
+
+
+      await Promise.all(orderedItemPromises);
+      clearCart();
+      toast.success("Your order has been placed successfully");
+      navigate(routes.userHome())
+    }catch(error){
+      console.error('Error creating order or ordered items:', error);
+    }
   }
 
   return (

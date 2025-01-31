@@ -3,48 +3,48 @@ export const standard = defineScenario({
     one: {
       data: {
         image: 'String',
-        quantity: 7105191,
-        price: 8681114.018243128,
-        totalPrice: 5038522.603927482,
+        quantity: 5350733,
+        price: 4471582.11073982,
+        totalPrice: 57964.19813444142,
         menu: {
           create: {
             name: 'String',
-            price: 1057031.5071361258,
+            price: 8925101.80549597,
             ingredients: 'String',
-            updatedAt: '2025-01-30T12:07:57.943Z',
+            updatedAt: '2025-01-30T15:24:26.966Z',
           },
         },
         order: {
           create: {
-            totalAmount: 7325974.728646487,
+            totalAmount: 9549341.812552778,
             customer: {
               create: {
                 name: 'String',
-                email: 'String3843607',
+                email: 'String1881990',
                 password: 'String',
-                updatedAt: '2025-01-30T12:07:58.042Z',
+                updatedAt: '2025-01-30T15:24:27.085Z',
               },
             },
-            restaurant: {
+          },
+        },
+        restaurant: {
+          create: {
+            name: 'String',
+            description: 'String',
+            open: 'String',
+            close: 'String',
+            phone: 'String',
+            website: 'String',
+            city: 'String',
+            state: 'String',
+            zipcode: 'String',
+            updatedAt: '2025-01-30T15:24:27.149Z',
+            user: {
               create: {
                 name: 'String',
-                description: 'String',
-                open: 'String',
-                close: 'String',
-                phone: 'String',
-                website: 'String',
-                city: 'String',
-                state: 'String',
-                zipcode: 'String',
-                updatedAt: '2025-01-30T12:07:58.101Z',
-                user: {
-                  create: {
-                    name: 'String',
-                    email: 'String187098',
-                    password: 'String',
-                    updatedAt: '2025-01-30T12:07:58.158Z',
-                  },
-                },
+                email: 'String8044809',
+                password: 'String',
+                updatedAt: '2025-01-30T15:24:27.203Z',
               },
             },
           },
@@ -54,48 +54,48 @@ export const standard = defineScenario({
     two: {
       data: {
         image: 'String',
-        quantity: 6008597,
-        price: 1557282.3635313893,
-        totalPrice: 6615392.11360328,
+        quantity: 9669418,
+        price: 5305115.709263701,
+        totalPrice: 5334969.161007224,
         menu: {
           create: {
             name: 'String',
-            price: 1863002.3914986183,
+            price: 3715907.381244623,
             ingredients: 'String',
-            updatedAt: '2025-01-30T12:07:58.218Z',
+            updatedAt: '2025-01-30T15:24:27.250Z',
           },
         },
         order: {
           create: {
-            totalAmount: 2909317.231230104,
+            totalAmount: 4227860.76720596,
             customer: {
               create: {
                 name: 'String',
-                email: 'String7086031',
+                email: 'String8345390',
                 password: 'String',
-                updatedAt: '2025-01-30T12:07:58.331Z',
+                updatedAt: '2025-01-30T15:24:27.372Z',
               },
             },
-            restaurant: {
+          },
+        },
+        restaurant: {
+          create: {
+            name: 'String',
+            description: 'String',
+            open: 'String',
+            close: 'String',
+            phone: 'String',
+            website: 'String',
+            city: 'String',
+            state: 'String',
+            zipcode: 'String',
+            updatedAt: '2025-01-30T15:24:27.425Z',
+            user: {
               create: {
                 name: 'String',
-                description: 'String',
-                open: 'String',
-                close: 'String',
-                phone: 'String',
-                website: 'String',
-                city: 'String',
-                state: 'String',
-                zipcode: 'String',
-                updatedAt: '2025-01-30T12:07:58.378Z',
-                user: {
-                  create: {
-                    name: 'String',
-                    email: 'String8801261',
-                    password: 'String',
-                    updatedAt: '2025-01-30T12:07:58.443Z',
-                  },
-                },
+                email: 'String4779941',
+                password: 'String',
+                updatedAt: '2025-01-30T15:24:27.491Z',
               },
             },
           },
