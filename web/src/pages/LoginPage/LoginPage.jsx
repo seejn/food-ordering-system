@@ -27,7 +27,7 @@ const LoginPage = () => {
     }
   `
 
-  const [logIn]= useMutation(LOG_IN_MUTATION, {
+  const [logIn, {loading}]= useMutation(LOG_IN_MUTATION, {
     onCompleted: ({ logIn }) => {
       const { token, user } = logIn
       setAuth(token, user)
@@ -116,6 +116,7 @@ const LoginPage = () => {
             <button
               type="submit"
               className="w-full py-3 bg-[#04AA6D] text-white font-semibold rounded-md hover:bg-[#32a4e7]"
+              disabled={loading}
             >
               Login
             </button>
