@@ -51,7 +51,7 @@ const UserLayout = ({ children }) => {
           </nav>
         </div>
       </header>
-      <main className="flex flex-col gap-20 justify-center items-center min-h-[50vh]">
+      <main className="flex flex-col gap-20 justify-center items-center min-h-[65vh]">
         {children}
       </main>
       <footer className="bg-[#04AA6D] text-white p-8 mt-12">
